@@ -9,10 +9,10 @@ echo <<< EOL
 usage: php client.php
 
 command:
-    join      : {"command": "join", "params":{"room_id": 1}}
-    leave     : {"command": "leave", "params":{"room_id": 1}}
-    send      : {"command": "send", "params":{"message": "hello"}}
-    keepalive : {"command": "keepalive"}
+    join      : {"method": "join", "params":{"room_id": 1}}
+    leave     : {"method": "leave", "params":{"room_id": 1}}
+    send      : {"method": "send", "params":{"message": "hello", "room_id": 1}}
+    keepalive : {"method": "keepalive"}
 
 EOL;
 
