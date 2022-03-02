@@ -18,7 +18,8 @@ if (!$socket) {
 
 // 受信ループ
 do {
-    $json = stream_socket_recvfrom($socket, 1500, 0, $address);
+	$json = stream_socket_recvfrom($socket, 1500, 0, $address);
+	echo($json);
     $data = json_decode($json);
     switch($data->method){
       case RPC_METHOD_JOIN:
