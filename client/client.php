@@ -1,12 +1,12 @@
 <?php
 
-// 定数
-const SERVER_ADDRESS = 'mastershen.kanetech.pro';
-const SERVER_PORT = 9999;
+if($argc != 3){
+	// 使い方表示
+	echo <<< EOL
+usage: php client.php [address] [port]
 
-// 使い方表示
-echo <<< EOL
-usage: php client.php
+    address   : 接続先アドレス
+    port      : 接続先ポート番号
 
 command:
     join      : {"method": "join", "params":{"room_id": 1}}
@@ -15,9 +15,15 @@ command:
     keepalive : {"method": "keepalive"}
 
 EOL;
+	exit(1);
+}
+
+// パラメータ
+$server_address = $argv[1];
+$server_port = $argv[2];
 
 // ソケット作成
-$sock = stream_socket_client('udp://'.SERVER_ADDRESS.':'.SERVER_PORT, $errno, $errstr, 30);
+$sock = stream_socket_client('udp://'.$server_address.':'.$server_port, $errno, $errstr, 30);
 
 // ソケットも標準入力もブロックしない
 stream_set_blocking($sock, false);
