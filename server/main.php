@@ -7,14 +7,31 @@ const RPC_METHOD_JOIN = "join";
 const RPC_METHOD_LEAVE = "leave";
 const RPC_METHOD_SEND = "send";
 
+// help
+if($argc != 3){
+	echo <<< EOL
+usage: php main.php [address] [port]
+
+    address      : Listenするアドレス
+    port         : Listenするポート番号
+
+EOL;
+	exit(1);
+}
+
+// パラメータ
+$listen_address = $argv[1];
+$listen_port = $argv[2];
+
 // ルーム
 $rooms = new Rooms();
 
 // サーバソケット作成
-$socket = stream_socket_server("udp://10.138.0.4:9999", $errno, $errstr, STREAM_SERVER_BIND);
+$socket = stream_socket_server("udp://$listen_address:$listen_port", $errno, $errstr, STREAM_SERVER_BIND);
 if (!$socket) {
     die("$errstr ($errno)");
 }
+echo('Start to listen.');
 
 // 受信ループ
 do {
