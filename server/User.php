@@ -15,9 +15,9 @@ class User
     $this->socket = $socket;
   }
 
-  public function send($message)
+  public function send($field, $message)
   {
-    $json = json_encode(['method' => 'send', 'params' => $message]);
+    $json = json_encode([$field => $message]);
     stream_socket_sendto($this->socket, $json, 0, $this->address);
     echo("send: $json to: {$this->address}\n");
   }
