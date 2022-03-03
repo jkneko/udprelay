@@ -40,7 +40,7 @@ do {
   $data = json_decode($json);
   if(!$data){
     echo("invalid json: $json\n");
-    $json = json_encode(['jsonrpc' => 2.0, 'error' => "invalid json: $json"]);
+    $json = json_encode(['error' => "invalid json: $json"]);
     stream_socket_sendto($socket, $json, 0, $address);
     continue;
   }

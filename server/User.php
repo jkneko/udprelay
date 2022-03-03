@@ -17,7 +17,7 @@ class User
 
   public function send($message)
   {
-    $json = json_encode(['jsonrpc' => 2.0, 'method' => 'send', 'params' => $message]);
+    $json = json_encode(['method' => 'send', 'params' => $message]);
     stream_socket_sendto($this->socket, $json, 0, $this->address);
     echo("send: $json to: {$this->address}\n");
   }
