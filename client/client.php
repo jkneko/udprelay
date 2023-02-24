@@ -1,8 +1,7 @@
 <?php
 
-if($argc != 3){
-	// 使い方表示
-	echo <<< EOL
+// 使い方表示
+echo <<< EOL
 usage: php client.php [address] [port]
 
     address   : 接続先アドレス
@@ -15,6 +14,7 @@ command:
     keepalive : {"method": "keepalive"}
 
 EOL;
+if($argc != 3){
 	exit(1);
 }
 
